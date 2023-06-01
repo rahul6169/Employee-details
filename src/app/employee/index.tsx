@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { CreateTag } from "./modify-tag";
 import { Button, Card, Drawer } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { TagListInfo } from "./tag-list";
-import { Tag } from "../../../graphql";
+import { Skill } from "../../../graphql";
 import { getDrawerWidth } from "../../lib/drawer-size";
+import { CreateEmployee } from "./modify-employee";
+import { EmployeeListInfo } from "./employee-list";
 
-export const Tags: React.FC = () => {
+export const Employees: React.FC = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const toggleDrawerVisible = () => setIsDrawerVisible((prev) => !prev);
-  const [editData, setEditData] = useState<Tag | null>();
+  const [editData, setEditData] = useState<Skill | null>();
   const onClickCreate = () => {
     setEditData(null);
     toggleDrawerVisible();
   };
-  const onClickEdit = (editData: Tag) => {
+  const onClickEdit = (editData: Skill) => {
     setEditData(editData);
     toggleDrawerVisible();
   };
@@ -35,19 +35,19 @@ export const Tags: React.FC = () => {
   return (
     <Card extra={extraButton}>
       <Drawer
-        title={editData ? "Update Tag" : "Create a new Tag"}
+        title={editData ? "Update Employee" : "Create a new Employee"}
         width={getDrawerWidth(400)}
         onClose={toggleDrawerVisible}
         visible={isDrawerVisible}
         bodyStyle={{ paddingBottom: 80 }}
         destroyOnClose={true}
       >
-        <CreateTag
+        <CreateEmployee
           toggleDrawerVisible={toggleDrawerVisible}
           editData={editData}
         />
       </Drawer>
-      <TagListInfo onClickEdit={onClickEdit} />
+      <EmployeeListInfo onClickEdit={onClickEdit} />
     </Card>
   );
 };

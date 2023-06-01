@@ -35,7 +35,7 @@ export const Skills: React.FC = () => {
   return (
     <Card extra={extraButton}>
       <Drawer
-        title={editData ? "Update Category" : "Create a new Category"}
+        title={editData ? "Update Skill" : "Create a new Skill"}
         width={getDrawerWidth(400)}
         onClose={toggleDrawerVisible}
         visible={isDrawerVisible}

@@ -54,6 +54,7 @@ export class Customer {
 
 export class Employee {
     Email?: Nullable<string>;
+    Name?: Nullable<string>;
     Phone?: Nullable<string>;
     age?: Nullable<number>;
     dob?: Nullable<DateTime>;

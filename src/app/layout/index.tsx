@@ -10,6 +10,7 @@ import { Layout, Menu, Button, theme } from "antd";
 import "./style.css";
 import { Tags } from "../Tag";
 import { Skills } from "../skill";
+import { Employees } from "../employee";
 const { Header, Sider, Content } = Layout;
 
 const LayoutDesign = () => {
@@ -66,7 +67,7 @@ const LayoutDesign = () => {
             background: colorBgContainer,
           }}
         >
-          <Skills />
+          <Employees />
         </Content>
       </Layout>
     </Layout>
