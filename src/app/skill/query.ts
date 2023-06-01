@@ -30,7 +30,12 @@ export const GET_ALL_SKILLS = gql`
 export const UPDATE_SKILLS = gql`
   mutation UpdateSkill($updateSkillId: String!, $updateSkill: SkillDto!) {
     updateSkill(id: $updateSkillId, updateSkill: $updateSkill) {
+      id
       Name
+      tags {
+        id
+        Name
+      }
     }
   }
 `;

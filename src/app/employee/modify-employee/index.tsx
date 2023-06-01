@@ -51,6 +51,8 @@ export const CreateEmployee: React.FC<PropsType> = ({
       const values = await form.validateFields();
       const modifyCategoryDto = {
         Name: values?.name,
+        Email: values?.email,
+        Phone: values?.phone,
         tagIds: values?.tagIds?.value,
       };
 
@@ -91,10 +93,26 @@ export const CreateEmployee: React.FC<PropsType> = ({
           </Form.Item>
         </Col>
         <Col span={20}>
+          <Form.Item name="email" rules={rules?.email} label="Email">
+            <Input placeholder="Enter Employee Email" />
+          </Form.Item>
+        </Col>
+        <Col span={20}>
+          <Form.Item name="phone" rules={rules?.phone} label="Phone">
+            <Input placeholder="Enter Employee Phone" />
+          </Form.Item>
+        </Col>
+        {/* <Col span={20}>
+          <Form.Item name="name" rules={rules?.name} label="Name">
+            <Input placeholder="Enter Employee Name" />
+          </Form.Item>
+        </Col> */}
+        <Col span={20}>
           <Form.Item
-            name="tagIds"
+            name="skillsId"
             rules={rules?.roleId}
             wrapperCol={{ span: 23 }}
+            label="Select Tag"
           >
             <Select
               className="w-100 input-box-bg"

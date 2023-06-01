@@ -40,6 +40,7 @@ export const CreateSkill: React.FC<PropsType> = ({
     if (!editData) return;
     form.setFieldsValue({
       name: editData?.Name,
+      tagIds: editData?.tags?.map((tag) => tag?.Name),
     });
   }, [form, editData]);
   const onFinish = async () => {
@@ -51,9 +52,8 @@ export const CreateSkill: React.FC<PropsType> = ({
       const values = await form.validateFields();
       const modifyCategoryDto = {
         Name: values?.name,
-        tagIds: values?.tagIds?.value,
+        tagIds: values?.tagIds.map((tag: any) => tag.value),
       };
-
       if (editData?.id) {
         await updateSkill({
           variables: {

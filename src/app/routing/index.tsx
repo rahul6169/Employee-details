@@ -1,5 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LayoutDesign from "../layout";
+import { Employees } from "../employee";
+import { Skills } from "../skill";
 
 export const AppRouting: React.FC = () => {
   return (
@@ -7,7 +9,15 @@ export const AppRouting: React.FC = () => {
       <Routes>
         {/* <Route index element={<Navigate to={RoutingConstraints.LOGIN} />} /> */}
 
-        <Route path="" element={<LayoutDesign />} />
+        <Route
+          path="/ss"
+          element={
+            <>
+              <LayoutDesign />
+              <Skills />
+            </>
+          }
+        />
 
         {/* </Route> */}
         <Route path="*" element={<p>404 Not Found</p>} />

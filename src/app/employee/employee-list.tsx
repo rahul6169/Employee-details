@@ -19,7 +19,7 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
 
     await deleteEmployee({
       variables: {
-        deleteSkillId: record?.id,
+        deleteEmployeeId: record?.id,
       },
       refetchQueries: ["GetAllEmployee"],
     });
@@ -32,6 +32,33 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
       render: (_, record) => (
         <div className="d-flex antd-data-table-text-primary">
           {record?.Name as string}
+        </div>
+      ),
+    },
+    {
+      title: "Phone",
+      dataIndex: "phone",
+      render: (_, record) => (
+        <div className="d-flex antd-data-table-text-primary">
+          {(record?.Phone as string) || "--"}
+        </div>
+      ),
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      render: (_, record) => (
+        <div className="d-flex antd-data-table-text-primary">
+          {(record?.Email as string) || "--"}
+        </div>
+      ),
+    },
+    {
+      title: "Age",
+      dataIndex: "age",
+      render: (_, record) => (
+        <div className="d-flex antd-data-table-text-primary">
+          {record?.age as number}
         </div>
       ),
     },

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -6,11 +5,11 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from "antd";
+import { Button, Layout, Menu, theme } from "antd";
+import { useState } from "react";
 import "./style.css";
-import { Tags } from "../Tag";
-import { Skills } from "../skill";
 import { Employees } from "../employee";
+import { Tags } from "../Tag";
 const { Header, Sider, Content } = Layout;
 
 const LayoutDesign = () => {
@@ -67,7 +66,7 @@ const LayoutDesign = () => {
             background: colorBgContainer,
           }}
         >
-          <Employees />
+          <Tags />
         </Content>
       </Layout>
     </Layout>
