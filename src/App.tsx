@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { ApolloProvider } from "@apollo/client";
+import { ConfigProvider } from "antd";
+import { client } from "./app/apollo";
+import { AppRouting } from "./app/routing";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfigProvider theme={{ hashed: false }}>
+      <ApolloProvider client={client}>
+        <AppRouting />
+      </ApolloProvider>
+    </ConfigProvider>
   );
 }
 
