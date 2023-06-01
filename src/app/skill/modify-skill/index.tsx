@@ -1,13 +1,14 @@
-import { useMutation } from "@apollo/client";
-import { Button, Col, Form, Input, Row, message } from "antd";
+import { useMutation, useQuery } from "@apollo/client";
+import { Button, Col, Form, Input, Row, Select, message } from "antd";
 import { Rule } from "antd/es/form";
 import { useEffect, useState } from "react";
-import { CREATE_TAG, UPDATE_TAG } from "../query";
-import { IMutation, Tag } from "../../../graphql";
+import { IMutation, IQuery, Skill, Tag } from "../../../../graphql";
+import { CREATE_SKILL, UPDATE_SKILLS } from "../query";
+import { GET_ALL_TAGS } from "../../Tag/query";
 
 interface PropsType {
   toggleDrawerVisible: () => void;
-  editData: Tag | null | undefined;
+  editData: Skill | null | undefined;
 }
 const rules: { [key: string]: Rule[] } = {
   name: [
@@ -18,16 +19,23 @@ const rules: { [key: string]: Rule[] } = {
     },
   ],
 };
-export const CreateTag: React.FC<PropsType> = ({
+
+const { Option } = Select;
+
+export const CreateSkill: React.FC<PropsType> = ({
   toggleDrawerVisible,
   editData,
 }) => {
   const [form] = Form.useForm();
   const [isFormDisabled, setIsFormDisabled] = useState<boolean>(false);
 
-  const [createTag, { loading }] = useMutation<IMutation>(CREATE_TAG);
-  const [updateTag, { loading: updateLoading }] =
-    useMutation<IMutation>(UPDATE_TAG);
+  const [createSkill, { loading }] = useMutation<IMutation>(CREATE_SKILL);
+  const [updateSkill, { loading: updateLoading }] =
+    useMutation<IMutation>(UPDATE_SKILLS);
+
+  const { loading: rolesDetailLoading, data } = useQuery<IQuery>(GET_ALL_TAGS);
+  const tagsInfo = data?.getAllTags;
+  console.log(tagsInfo, "aasdadaassddasd");
   useEffect(() => {
     if (!editData) return;
     form.setFieldsValue({
@@ -43,23 +51,24 @@ export const CreateTag: React.FC<PropsType> = ({
       const values = await form.validateFields();
       const modifyCategoryDto = {
         Name: values?.name,
+        tagIds: values?.tagIds?.value,
       };
 
       if (editData?.id) {
-        await updateTag({
+        await updateSkill({
           variables: {
-            updateTagId: editData?.id,
-            updateTag: modifyCategoryDto,
+            updateSkillId: editData?.id,
+            updateSkill: modifyCategoryDto,
           },
         })
           .then(() => toggleDrawerVisible())
           .catch((error) => message?.error(error.message));
       } else {
-        await createTag({
+        await createSkill({
           variables: {
-            createTag: modifyCategoryDto,
+            createskill: modifyCategoryDto,
           },
-          refetchQueries: ["GetAllTags"],
+          refetchQueries: ["GetAllSkills"],
         })
           .then(() => toggleDrawerVisible())
           .catch((error) => message?.error(error.message));
@@ -78,7 +87,28 @@ export const CreateTag: React.FC<PropsType> = ({
       <Row gutter={16}>
         <Col span={20}>
           <Form.Item name="name" rules={rules?.name} label="Title">
-            <Input placeholder="Enter Tag Name" />
+            <Input placeholder="Enter Skill Name" />
+          </Form.Item>
+        </Col>
+        <Col span={20}>
+          <Form.Item
+            name="tagIds"
+            rules={rules?.roleId}
+            wrapperCol={{ span: 23 }}
+          >
+            <Select
+              className="w-100 input-box-bg"
+              placeholder="Select Tag"
+              mode="multiple"
+              labelInValue={true}
+              showSearch
+            >
+              {tagsInfo?.map((tag) => (
+                <Option value={tag?.id} key={tag?.id}>
+                  {tag?.Name}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </Col>
       </Row>

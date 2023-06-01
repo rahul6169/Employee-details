@@ -38,7 +38,6 @@ export class SkillDto {
 
 export class TagDto {
     Name?: Nullable<string>;
-    id: string;
 }
 
 export class Customer {
@@ -74,7 +73,8 @@ export abstract class IMutation {
     deleteTag?: Tag;
     stringReturnType?: string;
     updateEmployee?: Employee[];
-    updateTag?: Tag[];
+    updateSkill?: Skill[];
+    updateTag?: Tag;
 }
 
 export abstract class IQuery {
@@ -89,7 +89,6 @@ export abstract class IQuery {
     getTag?: Tag;
     getTopSkillsWithCount: Skill[];
     getTopTagWithCount: Tag[];
-    updateSkill?: Skill[];
 }
 
 export class Skill {

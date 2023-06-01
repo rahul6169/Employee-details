@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { CreateTag } from "./modify-tag";
 import { Button, Card, Drawer } from "antd";
-import { getDrawerWidth } from "../lib/drawer-size";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Tag } from "../../graphql";
-import { TagListInfo } from "./tag-list";
+import { Skill } from "../../../graphql";
+import { getDrawerWidth } from "../../lib/drawer-size";
+import { CreateSkill } from "./modify-skill";
+import { SkillListInfo } from "./skill-list";
 
-export const Tags: React.FC = () => {
+export const Skills: React.FC = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const toggleDrawerVisible = () => setIsDrawerVisible((prev) => !prev);
-  const [editData, setEditData] = useState<Tag | null>();
+  const [editData, setEditData] = useState<Skill | null>();
   const onClickCreate = () => {
     setEditData(null);
     toggleDrawerVisible();
   };
-  const onClickEdit = (editData: Tag) => {
+  const onClickEdit = (editData: Skill) => {
     setEditData(editData);
     toggleDrawerVisible();
   };
@@ -42,12 +42,12 @@ export const Tags: React.FC = () => {
         bodyStyle={{ paddingBottom: 80 }}
         destroyOnClose={true}
       >
-        <CreateTag
+        <CreateSkill
           toggleDrawerVisible={toggleDrawerVisible}
           editData={editData}
         />
       </Drawer>
-      <TagListInfo onClickEdit={onClickEdit} />
+      <SkillListInfo onClickEdit={onClickEdit} />
     </Card>
   );
 };

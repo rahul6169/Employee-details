@@ -2,8 +2,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Card, Table } from "antd";
 import { DELETE_TAG, GET_ALL_TAGS } from "./query";
 import { ColumnsType } from "antd/es/table";
-import { IMutation, IQuery, Tag } from "../../graphql";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { IMutation, IQuery, Tag } from "../../../graphql";
 interface PropsType {
   onClickEdit: (editData: Tag) => void;
 }
