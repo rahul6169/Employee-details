@@ -4,6 +4,7 @@ import { ColumnsType } from "antd/es/table";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Employee, IMutation, IQuery, Skill, Tag } from "../../../graphql";
 import { DELETE_EMPLOYEE, GET_ALL_EMPLOYEE } from "./query";
+import { DateTime } from "luxon";
 interface PropsType {
   onClickEdit: (editData: Employee) => void;
 }
@@ -50,6 +51,24 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
       render: (_, record) => (
         <div className="d-flex antd-data-table-text-primary">
           {(record?.Email as string) || "--"}
+        </div>
+      ),
+    },
+    {
+      title: "DOB",
+      dataIndex: "dob",
+      render: (_, record) => (
+        <div className="d-flex antd-data-table-text-primary">
+          {DateTime.fromISO(record?.dob).toFormat("dd-MM-yyyy") || "--"}
+        </div>
+      ),
+    },
+    {
+      title: "DOJ",
+      dataIndex: "doj",
+      render: (_, record) => (
+        <div className="d-flex antd-data-table-text-primary">
+          {DateTime.fromISO(record?.doj).toFormat("dd-MM-yyyy") || "--"}
         </div>
       ),
     },
