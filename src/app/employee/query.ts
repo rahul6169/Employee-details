@@ -3,13 +3,13 @@ import { gql } from "@apollo/client";
 export const CREATE_EMPLOYEE = gql`
   mutation CreateEmployee($createEmployee: EmployeeDto!) {
     createEmployee(createEmployee: $createEmployee) {
-      Phone
       Email
+      Name
+      Phone
       age
       dob
-      id
-      Name
       doj
+      id
       skills {
         Name
         id

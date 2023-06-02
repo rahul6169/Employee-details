@@ -1,10 +1,20 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, Col, Form, Input, Row, Select, message } from "antd";
+import {
+  Button,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Row,
+  Select,
+  message,
+} from "antd";
 import { Rule } from "antd/es/form";
 import { useEffect, useState } from "react";
 import { Employee, IMutation, IQuery, Skill, Tag } from "../../../../graphql";
 import { GET_ALL_TAGS } from "../../Tag/query";
 import { CREATE_EMPLOYEE, UPDATE_EMPLOYEE } from "../query";
+import { GET_ALL_SKILLS } from "../../skill/query";
 
 interface PropsType {
   toggleDrawerVisible: () => void;
@@ -16,6 +26,19 @@ const rules: { [key: string]: Rule[] } = {
       max: 30,
       required: true,
       message: "Enter title",
+    },
+  ],
+  email: [
+    {
+      required: true,
+      message: "Enter Email",
+    },
+  ],
+  phone: [
+    {
+      max: 10,
+      required: true,
+      message: "Enter Phone",
     },
   ],
 };
@@ -33,13 +56,16 @@ export const CreateEmployee: React.FC<PropsType> = ({
   const [updateEmployee, { loading: updateLoading }] =
     useMutation<IMutation>(UPDATE_EMPLOYEE);
 
-  const { loading: rolesDetailLoading, data } = useQuery<IQuery>(GET_ALL_TAGS);
-  const tagsInfo = data?.getAllTags;
-  console.log(tagsInfo, "aasdadaassddasd");
+  const { loading: skillLoading, data } = useQuery<IQuery>(GET_ALL_SKILLS);
+  const skillsInfo = data?.getAllSkills;
   useEffect(() => {
     if (!editData) return;
     form.setFieldsValue({
       name: editData?.Name,
+      email: editData?.Email,
+      phone: editData?.Phone,
+      // dob: editData?.dob,
+      skillIds: editData?.skills,
     });
   }, [form, editData]);
   const onFinish = async () => {
@@ -49,18 +75,20 @@ export const CreateEmployee: React.FC<PropsType> = ({
     }, 2000);
     try {
       const values = await form.validateFields();
-      const modifyCategoryDto = {
+      const modifyEmployeeDto = {
         Name: values?.name,
         Email: values?.email,
         Phone: values?.phone,
-        tagIds: values?.tagIds?.value,
+        dob: values?.dob,
+        doj: values?.doj,
+        skillsId: values?.skillsId?.map((skill: any) => skill?.value),
       };
 
       if (editData?.id) {
         await updateEmployee({
           variables: {
-            updateSkillId: editData?.id,
-            updateSkill: modifyCategoryDto,
+            updateEmployeeId: editData?.id,
+            updateEmployee: modifyEmployeeDto,
           },
         })
           .then(() => toggleDrawerVisible())
@@ -68,7 +96,7 @@ export const CreateEmployee: React.FC<PropsType> = ({
       } else {
         await createEmployee({
           variables: {
-            createskill: modifyCategoryDto,
+            createEmployee: modifyEmployeeDto,
           },
           refetchQueries: ["GetAllEmployee"],
         })
@@ -102,28 +130,34 @@ export const CreateEmployee: React.FC<PropsType> = ({
             <Input placeholder="Enter Employee Phone" />
           </Form.Item>
         </Col>
-        {/* <Col span={20}>
-          <Form.Item name="name" rules={rules?.name} label="Name">
-            <Input placeholder="Enter Employee Name" />
+        <Col span={20}>
+          <Form.Item name="dob" label="Date of Birth">
+            <DatePicker style={{ width: 140 }} placeholder="Date of Birth" />
           </Form.Item>
-        </Col> */}
+        </Col>
+
+        <Col span={20}>
+          <Form.Item name="doj" label="Date of Joining">
+            <DatePicker style={{ width: 140 }} placeholder="Date of Joining" />
+          </Form.Item>
+        </Col>
         <Col span={20}>
           <Form.Item
             name="skillsId"
             rules={rules?.roleId}
             wrapperCol={{ span: 23 }}
-            label="Select Tag"
+            label="Select Skills"
           >
             <Select
               className="w-100 input-box-bg"
-              placeholder="Select Tag"
+              placeholder="Select Skills"
               mode="multiple"
               labelInValue={true}
               showSearch
             >
-              {tagsInfo?.map((tag) => (
-                <Option value={tag?.id} key={tag?.id}>
-                  {tag?.Name}
+              {skillsInfo?.map((skill) => (
+                <Option value={skill?.id} key={skill?.id}>
+                  {skill?.Name}
                 </Option>
               ))}
             </Select>

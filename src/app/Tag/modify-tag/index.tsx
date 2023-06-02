@@ -77,7 +77,7 @@ export const CreateTag: React.FC<PropsType> = ({
     <Form layout="vertical" form={form}>
       <Row gutter={16}>
         <Col span={20}>
-          <Form.Item name="name" rules={rules?.name} label="Title">
+          <Form.Item name="name" rules={rules?.name} label="Name">
             <Input placeholder="Enter Tag Name" />
           </Form.Item>
         </Col>
@@ -85,7 +85,7 @@ export const CreateTag: React.FC<PropsType> = ({
       <div className="organization-submit-btn-section">
         <Button
           type="primary"
-          className="custom-submit-btn mr-2"
+          className="custom-submit-btn"
           onClick={onFinish}
           loading={loading || isFormDisabled}
         >

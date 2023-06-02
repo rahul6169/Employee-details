@@ -10,6 +10,7 @@ import { useState } from "react";
 import "./style.css";
 import { Employees } from "../employee";
 import { Tags } from "../Tag";
+import { Skills } from "../skill";
 const { Header, Sider, Content } = Layout;
 
 const LayoutDesign = () => {
@@ -66,7 +67,7 @@ const LayoutDesign = () => {
             background: colorBgContainer,
           }}
         >
-          <Tags />
+          <Employees />
         </Content>
       </Layout>
     </Layout>

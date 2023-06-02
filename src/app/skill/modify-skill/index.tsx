@@ -95,6 +95,7 @@ export const CreateSkill: React.FC<PropsType> = ({
             name="tagIds"
             rules={rules?.roleId}
             wrapperCol={{ span: 23 }}
+            label="Select Tags"
           >
             <Select
               className="w-100 input-box-bg"
