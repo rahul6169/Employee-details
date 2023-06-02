@@ -42,6 +42,24 @@ const rules: { [key: string]: Rule[] } = {
       message: "Enter Phone",
     },
   ],
+  dob: [
+    {
+      required: true,
+      message: "Enter dob",
+    },
+  ],
+  doj: [
+    {
+      required: true,
+      message: "Enter doj",
+    },
+  ],
+  skills: [
+    {
+      required: true,
+      message: "Select Skills",
+    },
+  ],
 };
 
 const { Option } = Select;
@@ -66,7 +84,9 @@ export const CreateEmployee: React.FC<PropsType> = ({
       name: editData?.Name,
       email: editData?.Email,
       phone: editData?.Phone,
-      // dob: DateTime.fromISO(editData?.dob).toFormat("dd-MM-yyyy"),
+      // dob: editData?.dob
+      //   ? DateTime.fromISO(editData.dob).toFormat("dd-MM-yyyy")
+      //   : undefined,
       skillIds: editData?.skills,
     });
   }, [form, editData]);
@@ -133,20 +153,20 @@ export const CreateEmployee: React.FC<PropsType> = ({
           </Form.Item>
         </Col>
         <Col span={20}>
-          <Form.Item name="dob" label="Date of Birth">
+          <Form.Item name="dob" rules={rules?.dob} label="Date of Birth">
             <DatePicker style={{ width: 140 }} placeholder="Date of Birth" />
           </Form.Item>
         </Col>
 
         <Col span={20}>
-          <Form.Item name="doj" label="Date of Joining">
+          <Form.Item name="doj" rules={rules?.doj} label="Date of Joining">
             <DatePicker style={{ width: 140 }} placeholder="Date of Joining" />
           </Form.Item>
         </Col>
         <Col span={20}>
           <Form.Item
             name="skillsId"
-            rules={rules?.roleId}
+            rules={rules?.skills}
             wrapperCol={{ span: 23 }}
             label="Select Skills"
           >

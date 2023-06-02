@@ -18,6 +18,12 @@ const rules: { [key: string]: Rule[] } = {
       message: "Enter title",
     },
   ],
+  tagIds: [
+    {
+      required: true,
+      message: "Select Tag",
+    },
+  ],
 };
 
 const { Option } = Select;
@@ -93,7 +99,7 @@ export const CreateSkill: React.FC<PropsType> = ({
         <Col span={20}>
           <Form.Item
             name="tagIds"
-            rules={rules?.roleId}
+            rules={rules?.tagIds}
             wrapperCol={{ span: 23 }}
             label="Select Tags"
           >

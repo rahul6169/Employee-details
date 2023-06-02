@@ -73,8 +73,8 @@ export abstract class IMutation {
     deleteSkill?: Skill;
     deleteTag?: Tag;
     stringReturnType?: string;
-    updateEmployee?: Employee[];
-    updateSkill?: Skill[];
+    updateEmployee?: Employee;
+    updateSkill?: Skill;
     updateTag?: Tag;
 }
 
