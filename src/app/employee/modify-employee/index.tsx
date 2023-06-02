@@ -15,6 +15,7 @@ import { Employee, IMutation, IQuery, Skill, Tag } from "../../../../graphql";
 import { GET_ALL_TAGS } from "../../Tag/query";
 import { CREATE_EMPLOYEE, UPDATE_EMPLOYEE } from "../query";
 import { GET_ALL_SKILLS } from "../../skill/query";
+import { DateTime } from "luxon";
 
 interface PropsType {
   toggleDrawerVisible: () => void;
@@ -60,11 +61,12 @@ export const CreateEmployee: React.FC<PropsType> = ({
   const skillsInfo = data?.getAllSkills;
   useEffect(() => {
     if (!editData) return;
+    console.log(editData?.dob);
     form.setFieldsValue({
       name: editData?.Name,
       email: editData?.Email,
       phone: editData?.Phone,
-      // dob: editData?.dob,
+      // dob: DateTime.fromISO(editData?.dob).toFormat("dd-MM-yyyy"),
       skillIds: editData?.skills,
     });
   }, [form, editData]);

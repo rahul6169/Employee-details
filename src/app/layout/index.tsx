@@ -11,6 +11,7 @@ import "./style.css";
 import { Employees } from "../employee";
 import { Tags } from "../Tag";
 import { Skills } from "../skill";
+import { Dashboard } from "../dashboard";
 const { Header, Sider, Content } = Layout;
 
 const LayoutDesign = () => {
@@ -67,7 +68,7 @@ const LayoutDesign = () => {
             background: colorBgContainer,
           }}
         >
-          <Employees />
+          <Dashboard />
         </Content>
       </Layout>
     </Layout>

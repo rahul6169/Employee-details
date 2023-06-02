@@ -7,14 +7,7 @@ export const AppRouting: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <LayoutDesign />
-            </>
-          }
-        />
+        <Route path="/" element={<LayoutDesign />} />
 
         <Route path="*" element={<p>404 Not Found</p>} />
       </Routes>
