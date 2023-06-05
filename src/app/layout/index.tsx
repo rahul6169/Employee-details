@@ -1,18 +1,8 @@
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { useState } from "react";
-import "./style.css";
-import { Employees } from "../employee";
-import { Tags } from "../Tag";
-import { Skills } from "../skill";
-import { Dashboard } from "../dashboard";
 import { Link, Outlet } from "react-router-dom";
+import "./style.css";
 const { Header, Sider, Content } = Layout;
 
 const LayoutDesign: React.FC = () => {
