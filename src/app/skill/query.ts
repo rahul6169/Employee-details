@@ -16,6 +16,10 @@ export const GET_SKILL = gql`
     getSkill(id: $getSkillId) {
       Name
       id
+      tags {
+        id
+        Name
+      }
     }
   }
 `;
@@ -24,6 +28,10 @@ export const GET_ALL_SKILLS = gql`
     getAllSkills {
       Name
       id
+      tags {
+        id
+        Name
+      }
     }
   }
 `;

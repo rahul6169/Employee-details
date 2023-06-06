@@ -15,8 +15,8 @@ import { Employee, IMutation, IQuery, Skill, Tag } from "../../../../graphql";
 import { GET_ALL_TAGS } from "../../Tag/query";
 import { CREATE_EMPLOYEE, UPDATE_EMPLOYEE } from "../query";
 import { GET_ALL_SKILLS } from "../../skill/query";
+import dayjs from "dayjs";
 import { DateTime } from "luxon";
-
 interface PropsType {
   toggleDrawerVisible: () => void;
   editData: Employee | null | undefined;
@@ -84,11 +84,10 @@ export const CreateEmployee: React.FC<PropsType> = ({
       name: editData?.Name,
       email: editData?.Email,
       phone: editData?.Phone,
-      // dob: editData?.dob
-      //   ? DateTime.fromISO(editData.dob).toFormat("dd-MM-yyyy")
-      //   : undefined,
-      skillIds: editData?.skills,
+      // dob: DateTime.fromISO(editData.dob),
+      skillsId: editData?.skills?.map((skill) => skill?.id),
     });
+    console.log(editData);
   }, [form, editData]);
   const onFinish = async () => {
     setIsFormDisabled(true);
@@ -101,7 +100,7 @@ export const CreateEmployee: React.FC<PropsType> = ({
         Name: values?.name,
         Email: values?.email,
         Phone: values?.phone,
-        dob: values?.dob,
+        dob: editData?.dob ? dayjs(editData.dob).toDate() : null,
         doj: values?.doj,
         skillsId: values?.skillsId?.map((skill: any) => skill?.value),
       };
@@ -186,7 +185,7 @@ export const CreateEmployee: React.FC<PropsType> = ({
           </Form.Item>
         </Col>
       </Row>
-      <div className="organization-submit-btn-section">
+      <div className="">
         <Button
           type="primary"
           className="custom-submit-btn mr-2"

@@ -46,8 +46,9 @@ export const CreateSkill: React.FC<PropsType> = ({
     if (!editData) return;
     form.setFieldsValue({
       name: editData?.Name,
-      tagIds: editData?.tags?.map((tag) => tag?.Name),
+      tagIds: editData?.tags?.map((tag) => tag?.id),
     });
+    console.log(editData?.tags, "sssss");
   }, [form, editData]);
   const onFinish = async () => {
     setIsFormDisabled(true);
