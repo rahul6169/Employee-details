@@ -86,7 +86,7 @@ export const CreateEmployee: React.FC<PropsType> = ({
       phone: editData?.Phone,
       skillsId: editData?.skills?.map((skill) => skill?.id),
     });
-    console.log(editData);
+    console.log(editData?.skills);
   }, [form, editData]);
   const onFinish = async () => {
     setIsFormDisabled(true);
@@ -169,7 +169,6 @@ export const CreateEmployee: React.FC<PropsType> = ({
             label="Select Skills"
           >
             <Select
-              className="w-100 input-box-bg"
               placeholder="Select Skills"
               mode="multiple"
               labelInValue={true}
@@ -187,7 +186,6 @@ export const CreateEmployee: React.FC<PropsType> = ({
       <div className="">
         <Button
           type="primary"
-          className="custom-submit-btn mr-2"
           onClick={onFinish}
           loading={loading || isFormDisabled}
         >
