@@ -84,7 +84,6 @@ export const CreateEmployee: React.FC<PropsType> = ({
       name: editData?.Name,
       email: editData?.Email,
       phone: editData?.Phone,
-      // dob: DateTime.fromISO(editData.dob),
       skillsId: editData?.skills?.map((skill) => skill?.id),
     });
     console.log(editData);

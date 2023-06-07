@@ -27,7 +27,7 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
   const [popConfirmVisible, setPopConfirmVisible] = useState<boolean>(false);
   const [selectSkill, setSelectSkill] = useState<string[]>([]);
   const [showDeleteButton, setShowDeleteButton] = useState<boolean>(false);
-  const [skill, setSkill] = useState<string[]>([]);
+  const [skill, setSkill] = useState<string>("");
   console.log(skill, "skillskill");
   const { data: skillsData } = useQuery<IQuery>(GET_ALL_SKILLS, {
     fetchPolicy: "network-only",
@@ -36,7 +36,7 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
     fetchPolicy: "network-only",
     variables: {
       filter: {
-        skillId: skill,
+        skillId: skill || null,
       },
     },
   });
@@ -142,7 +142,6 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
         title={
           <>
             <Collapse
-              className="filter-collapse"
               ghost={true}
               expandIconPosition="right"
               expandIcon={({ isActive }) => (
@@ -176,9 +175,10 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
 
             <Button
               type="primary"
-              className="filter-btn"
               onClick={() => {
                 setPopConfirmVisible(false);
+                setShowDeleteButton(false);
+                setSkill(selectSkill as any);
               }}
               block
             >
@@ -188,10 +188,6 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
         }
         onCancel={() => {
           setShowDeleteButton(false);
-        }}
-        onConfirm={() => {
-          setShowDeleteButton(false);
-          setSkill(selectSkill);
         }}
         onOpenChange={(visible) => {
           if (visible) {
