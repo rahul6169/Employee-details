@@ -67,6 +67,7 @@ export const CreateSkill: React.FC<PropsType> = ({
             updateSkillId: editData?.id,
             updateSkill: modifyCategoryDto,
           },
+          refetchQueries: ["GetAllSkills"],
         })
           .then(() => toggleDrawerVisible())
           .catch((error) => message?.error(error.message));
