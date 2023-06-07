@@ -153,7 +153,7 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
               <Collapse.Panel header={<b>By Skill</b>} key={1}>
                 <Card className="radio-card-color">
                   <Radio.Group
-                    onChange={(e) => setSkill(e.target.value)}
+                    onChange={(e) => setSelectSkill(e.target.value)}
                     value={selectSkill}
                   >
                     {skillData?.map((data) => (
