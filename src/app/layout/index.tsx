@@ -3,44 +3,69 @@ import { Button, Layout, Menu, theme } from "antd";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./style.css";
+import { useDispatch } from "react-redux";
+import { getAuth, signOut } from "firebase/auth";
+import { logout } from "../../store/session";
 const { Header, Sider, Content } = Layout;
 
 const LayoutDesign: React.FC = () => {
+  const dispatch = useDispatch();
+
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(logout() as any);
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
   return (
     <Layout className="layout-alignment">
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+        <div />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
           <Menu.Item key={"menu.key"} style={{ paddingLeft: "35px" }}>
-            <Link to={"/dashboard"} className="icon-primary">
+            <Link to={"/dashboard"}>
               <>
-                <span className="color-primary side-nav-text">Dashboard</span>
+                <span>Dashboard</span>
               </>
             </Link>
           </Menu.Item>
           <Menu.Item key={"menu.key2"} style={{ paddingLeft: "35px" }}>
-            <Link to={"/employee"} className="icon-primary">
+            <Link to={"/employee"}>
               <>
-                <span className="color-primary side-nav-text">Employee</span>
+                <span>Employee</span>
               </>
             </Link>
           </Menu.Item>
           <Menu.Item key={"menu.key3"} style={{ paddingLeft: "35px" }}>
-            <Link to={"/skill"} className="icon-primary">
+            <Link to={"/skill"}>
               <>
-                <span className="color-primary side-nav-text">Skill</span>
+                <span>Skill</span>
               </>
             </Link>
           </Menu.Item>
           <Menu.Item key={"menu.key4"} style={{ paddingLeft: "35px" }}>
-            <Link to={"/tag"} className="icon-primary">
+            <Link to={"/tag"}>
               <>
-                <span className="color-primary side-nav-text">Tag</span>
+                <span>Tag</span>
+              </>
+            </Link>
+          </Menu.Item>
+          <Menu.Item
+            key={"menu.key5"}
+            style={{ paddingLeft: "35px" }}
+            onClick={handleSignOut}
+          >
+            <Link to={"/login"}>
+              <>
+                <span>Logout</span>
               </>
             </Link>
           </Menu.Item>
