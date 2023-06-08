@@ -22,7 +22,7 @@ const LayoutDesign: React.FC = () => {
         dispatch(logout() as any);
       })
       .catch((error) => {
-        // An error happened.
+        console.log(error);
       });
   };
   return (
@@ -61,9 +61,9 @@ const LayoutDesign: React.FC = () => {
           <Menu.Item
             key={"menu.key5"}
             style={{ paddingLeft: "35px" }}
-            onClick={handleSignOut}
+            // onClick={handleSignOut}
           >
-            <Link to={"/login"}>
+            <Link to={"/login"} onClick={handleSignOut}>
               <>
                 <span>Logout</span>
               </>

@@ -13,7 +13,7 @@ const LoginForm: React.FC = () => {
     await signInWithEmailAndPassword(auth, values?.email, values?.password)
       .then((userCredential) => {
         const user = userCredential?.user;
-        console.log(userCredential?.user, "usercredential");
+        console.log(user, "usercredential");
       })
       .catch((error) => {
         console.error("login failed", error);

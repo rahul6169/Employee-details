@@ -1,10 +1,8 @@
 import { getAuth } from "firebase/auth";
 import { Dispatch } from "redux";
-import { FirebaseLoginService } from "../../firebase";
 import { client } from "../../app/apollo";
+import { FirebaseLoginService } from "../../firebase";
 import { ActionType, Session } from "./session.model";
-import { FetchResult } from "@apollo/client";
-import { IQuery } from "../../../graphql";
 
 const { getCurrentUser } = new FirebaseLoginService();
 const initSession =
