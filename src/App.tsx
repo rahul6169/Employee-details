@@ -5,8 +5,12 @@ import { ApolloProvider } from "@apollo/client";
 import { ConfigProvider } from "antd";
 import { client } from "./app/apollo";
 import { AppRouting } from "./app/routing";
+import { FirebaseLoginService } from "./firebase";
+import { firebaseConfig } from "./firebase/firebaseConfig";
 
 function App() {
+  new FirebaseLoginService().initialize(firebaseConfig);
+
   return (
     <ConfigProvider theme={{ hashed: false }}>
       <ApolloProvider client={client}>
