@@ -35,7 +35,7 @@ export const AppRouting: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Navigate to={RoutingConstraints.LOGIN} />} />
+        {/* <Route index element={<Navigate to={RoutingConstraints.LOGIN} />} /> */}
         <Route
           path={RoutingConstraints.LOGIN}
           element={

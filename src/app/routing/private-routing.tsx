@@ -9,7 +9,7 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ isAuthenticated }) => {
   if (!isAuthenticated) {
-    return <Navigate to={RoutingConstraints.INDEX} />;
+    return <Navigate to={RoutingConstraints.LOGIN} />;
   }
   return <AppRouting />;
 };
