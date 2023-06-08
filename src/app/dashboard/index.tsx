@@ -8,11 +8,17 @@ import { IQuery } from "../../../graphql";
 import { useQuery } from "@apollo/client";
 
 export const Dashboard = () => {
-  const { loading, data } = useQuery<IQuery>(EMPLOYEE_TOTAL_COUNT);
+  const { loading, data } = useQuery<IQuery>(EMPLOYEE_TOTAL_COUNT, {
+    fetchPolicy: "network-only",
+  });
 
-  const { data: topSkillsWithCount } = useQuery<IQuery>(GET_TOP_SKILLS_COUNT);
+  const { data: topSkillsWithCount } = useQuery<IQuery>(GET_TOP_SKILLS_COUNT, {
+    fetchPolicy: "network-only",
+  });
 
-  const { data: topTagsWithCount } = useQuery<IQuery>(GET_TOP_TAGS_COUNT);
+  const { data: topTagsWithCount } = useQuery<IQuery>(GET_TOP_TAGS_COUNT, {
+    fetchPolicy: "network-only",
+  });
 
   const employeeCount = data?.getEmployeeCount;
   const topSkillsWithCounts = topSkillsWithCount?.getTopSkillsWithCount;

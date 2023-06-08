@@ -99,7 +99,7 @@ export const CreateEmployee: React.FC<PropsType> = ({
         Name: values?.name,
         Email: values?.email,
         Phone: values?.phone,
-        dob: editData?.dob ? dayjs(editData.dob).toDate() : null,
+        dob: values?.dob,
         doj: values?.doj,
         skillsId: values?.skillsId?.map((skill: any) => skill?.value),
       };
