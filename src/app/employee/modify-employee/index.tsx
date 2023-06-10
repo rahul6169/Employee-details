@@ -110,6 +110,7 @@ export const CreateEmployee: React.FC<PropsType> = ({
             updateEmployeeId: editData?.id,
             updateEmployee: modifyEmployeeDto,
           },
+          refetchQueries: ["GetAllEmployee"],
         })
           .then(() => toggleDrawerVisible())
           .catch((error) => message?.error(error.message));

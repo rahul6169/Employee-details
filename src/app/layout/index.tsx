@@ -1,11 +1,15 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-import "./style.css";
-import { useDispatch } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, Outlet } from "react-router-dom";
 import { logout } from "../../store/session";
+import "./style.css";
 const { Header, Sider, Content } = Layout;
 
 const LayoutDesign: React.FC = () => {

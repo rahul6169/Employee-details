@@ -1,4 +1,4 @@
-import { Card, Descriptions } from "antd";
+import { Card, Descriptions, Spin } from "antd";
 import {
   EMPLOYEE_TOTAL_COUNT,
   GET_TOP_SKILLS_COUNT,
@@ -26,36 +26,38 @@ export const Dashboard = () => {
 
   return (
     <>
-      <Card title="Dashboard" style={{ marginBottom: "10px" }}>
-        <Descriptions bordered column={1}>
-          <Descriptions.Item label="Employee Count">
-            {employeeCount}
-          </Descriptions.Item>
-        </Descriptions>
-      </Card>
-      <Card title="Top Skills With Employee Count">
-        <Descriptions bordered column={1}>
-          {topSkillsWithCounts?.map((skill) => (
-            <>
-              <Descriptions.Item label={skill?.Name}>
-                {skill?.employeeCount || "--"}
-              </Descriptions.Item>
-            </>
-          ))}
-        </Descriptions>
-      </Card>
+      <Spin spinning={loading}>
+        <Card title="Dashboard" style={{ marginBottom: "10px" }}>
+          <Descriptions bordered column={1}>
+            <Descriptions.Item label="Employee Count">
+              {employeeCount}
+            </Descriptions.Item>
+          </Descriptions>
+        </Card>
+        <Card title="Top Skills With Employee Count">
+          <Descriptions bordered column={1}>
+            {topSkillsWithCounts?.map((skill) => (
+              <>
+                <Descriptions.Item label={skill?.Name}>
+                  {skill?.employeeCount || "--"}
+                </Descriptions.Item>
+              </>
+            ))}
+          </Descriptions>
+        </Card>
 
-      <Card title="Top Tags With Employee Count">
-        <Descriptions bordered column={1}>
-          {topTagsWithCounts?.map((tag) => (
-            <>
-              <Descriptions.Item label={tag?.Name}>
-                {tag?.employeeCount || "--"}
-              </Descriptions.Item>
-            </>
-          ))}
-        </Descriptions>
-      </Card>
+        <Card title="Top Tags With Employee Count">
+          <Descriptions bordered column={1}>
+            {topTagsWithCounts?.map((tag) => (
+              <>
+                <Descriptions.Item label={tag?.Name}>
+                  {tag?.employeeCount || "--"}
+                </Descriptions.Item>
+              </>
+            ))}
+          </Descriptions>
+        </Card>
+      </Spin>
     </>
   );
 };

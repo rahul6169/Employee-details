@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { Card, Table } from "antd";
+import { Card, Popconfirm, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { IMutation, IQuery, Skill, Tag } from "../../../graphql";
@@ -49,9 +49,15 @@ export const SkillListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
             >
               <EditOutlined />
             </span>
-            <span className="" onClick={() => onClickDelete(record)}>
+            {/* <span className="" onClick={() => onClickDelete(record)}>
               <DeleteOutlined />
-            </span>
+            </span> */}
+            <Popconfirm
+              title="Are you sure to delete this Skill?"
+              onConfirm={() => onClickDelete(record)}
+            >
+              <DeleteOutlined />
+            </Popconfirm>
           </>
         );
       },

@@ -12,7 +12,7 @@ function App() {
   new FirebaseLoginService().initialize(firebaseConfig);
 
   return (
-    <ConfigProvider theme={{ hashed: false }}>
+    <ConfigProvider>
       <ApolloProvider client={client}>
         <AppRouting />
       </ApolloProvider>

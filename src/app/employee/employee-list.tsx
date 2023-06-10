@@ -122,9 +122,15 @@ export const EmployeeListInfo: React.FC<PropsType> = ({ onClickEdit }) => {
             >
               <EditOutlined />
             </span>
-            <span className="" onClick={() => onClickDelete(record)}>
+            {/* <span className="" onClick={() => onClickDelete(record)}>
               <DeleteOutlined />
-            </span>
+            </span> */}
+            <Popconfirm
+              title="Are you sure to remove this Employee?"
+              onConfirm={() => onClickDelete(record)}
+            >
+              <DeleteOutlined />
+            </Popconfirm>
           </>
         );
       },
