@@ -13,6 +13,7 @@ import { initSession } from "../../store/session";
 import { RoutingConstraints } from "./constraints";
 import { Spin } from "antd";
 import "./style.css";
+import { RazorpayPayment } from "../razorpay";
 export const AppRouting: React.FC = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, hasSession } = useSelector(
@@ -47,6 +48,7 @@ export const AppRouting: React.FC = () => {
           <Route path="/employee" element={<Employees />} />
           <Route path="/skill" element={<Skills />} />
           <Route path="/tag" element={<Tags />} />
+          <Route path="/razorpay" element={<RazorpayPayment />} />
           <Route path="*" element={<p>404 Not Found</p>} />
         </Route>
       </Routes>

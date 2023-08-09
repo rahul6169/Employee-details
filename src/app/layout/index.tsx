@@ -62,8 +62,15 @@ const LayoutDesign: React.FC = () => {
               </>
             </Link>
           </Menu.Item>
+          <Menu.Item key={"menu.key5"} style={{ paddingLeft: "35px" }}>
+            <Link to={"/razorpay"}>
+              <>
+                <span>Razorpay</span>
+              </>
+            </Link>
+          </Menu.Item>
           <Menu.Item
-            key={"menu.key5"}
+            key={"menu.key6"}
             style={{ paddingLeft: "35px" }}
             // onClick={handleSignOut}
           >

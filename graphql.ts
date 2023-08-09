@@ -66,6 +66,7 @@ export class Employee {
 export abstract class IMutation {
     createCustomer?: Customer;
     createEmployee?: Employee;
+    createPaymentOrder?: RazorPay;
     createSkill?: Skill;
     createTag?: Tag;
     deleteCustomer?: Customer;
@@ -90,6 +91,11 @@ export abstract class IQuery {
     getTag?: Tag;
     getTopSkillsWithCount: Skill[];
     getTopTagWithCount: Tag[];
+}
+
+export class RazorPay {
+    amount?: Nullable<number>;
+    id?: Nullable<string>;
 }
 
 export class Skill {
