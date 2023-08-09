@@ -15,7 +15,7 @@ export const RazorpayPayment = () => {
       initOrder({
         variables: { amount: Number(value), currency: "INR" },
       }).then(({ data }) => {
-        console.log(data?.createPaymentOrder?.orderId);
+        console.log(data);
         let options: any = {
           key_id: "rzp_test_4xcvSagUAjt2Wl",
           key_secret: "uUEZBl3mMDAklV5qn11Z471H",
